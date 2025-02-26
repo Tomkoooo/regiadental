@@ -2,37 +2,39 @@ import { IconPhoneCall, IconPhone, IconMail, IconGlobe, IconClock, IconBrandFace
 import './App.css'
 import HeroSlider from './hero'
 import About from './about'
-import { IconCheck, IconDental } from '@tabler/icons-react'
+import {  IconDental } from '@tabler/icons-react'
 import DoctorsCarousel from './doctors'
 import Form from './form'
 
 function App() {
 
   const kezelesek = [
-    {text: "Diagnosztika, állapotfelmérés"},
-    {text: "Professzionális fogtisztitás"},
-    {text: "Fogfehérítés"},
-    {text: "Kerámia és direkt héjak"},
-    {text: "Gyökérkezelés"},
-    {text: "Esztétikus tömés"},
-    {text: "Inlay, onlay betét"},
-    {text: "Gyermekfogászat"},
-    {text: "Koronák, hidak"},
-    {text: "Kivehető fogpótlások"}
+    {text: "Diagnosztika, állapotfelmérés", link: "https://keramiadental.hu/diagnosztika-allapotfelmeres/"},
+    {text: "Professzionális fogtisztitás", link: "https://keramiadental.hu/professzionalis-fogtisztitas/"},
+    {text: "Fogfehérítés", link: "https://keramiadental.hu/fogfeherites/"},
+    {text: "Kerámia és direkt héjak", link: "https://keramiadental.hu/keramia-hejak/"},
+    {text: "Gyökérkezelés", link: "https://keramiadental.hu/gyokerkezeles/"},
+    {text: "Esztétikus tömés", link: "https://keramiadental.hu/esztetikus-tomes/"},
+    {text: "Inlay, onlay betét", link: "https://keramiadental.hu/inlay-onlay-betet/"},
+    {text: "Gyermekfogászat", link: "https://keramiadental.hu/gyermekfogaszat/"},
+    {text: "Koronák, hidak", link: "https://keramiadental.hu/femkeramia-korona/"},
+    {text: "Kivehető fogpótlások", link: "https://keramiadental.hu/hagyomanyos-fogsor/"},
   ]
 
   return (
     <>
+    {/* Fejléc szöveg ikonokkal */}
       <header className='flex justify-between w-full h-16 bg-white items-center text-red-500 md-text-md text-sm '>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhoneCall/>22/419-405</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhone/>20/244-8888</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconGlobe/>Székesfehérvár Szekfű Gy. u. 12.</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconClock/>Hétfő - Péntek 8.00 - 18.00</span>
-        <span className='flex gap-3 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconMail/><IconBrandFacebook/></span>
+        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhoneCall className='hidden md:flex'/>22/419-405</span>
+        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhone className='hidden md:flex'/>20/244-8888</span>
+        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconGlobe className='hidden md:flex'/>Mór</span>
+        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconClock className='hidden md:flex'/>Hétfő - Péntek 8.00 - 18.00</span>
+        <span className='gap-3 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl hidden md:flex'><IconMail /><IconBrandFacebook/></span>
       </header>
 
       <HeroSlider/>
 
+      {/* Navbar */}
       <nav className='w-full h-[8rem] flex bg-red-500 text-black sticky top-0 z-50 shadow-xl rounded-b-xl'>
         <div className='h-full w-1/3 rounded-tr-[7rem] rounded-br-[7rem] bg-red-400 flex items-center justify-center'>
             <span className='lg:text-3xl uppercase text-white'>
@@ -40,19 +42,19 @@ function App() {
             </span>
         </div>
         <div className='h-full w-2/3 flex justify-around items-center uppercase md:text-xl txt-sm flex-wrap text-white'>
-            <a className='cursor-pointer hover:scale-105 transition ease-in-out'>rólunk</a>
-            <a className='cursor-pointer hover:scale-105 transition ease-in-out'>szolgáltatás</a>
-            <a className='cursor-pointer hover:scale-105 transition ease-in-out'>orvosaink</a>
-            <a className='cursor-pointer hover:scale-105 transition ease-in-out'>időpontfoglalás</a>
+            <a href='#rolunk' className='cursor-pointer hover:scale-105 transition ease-in-out'>rólunk</a>
+            <a href='#szolgaltatas' className='cursor-pointer hover:scale-105 transition ease-in-out'>szolgáltatás</a>
+            <a href='#orvosaink' className='cursor-pointer hover:scale-105 transition ease-in-out'>orvosaink</a>
+            <a href="#kapcsolatfelvétel" className='cursor-pointer hover:scale-105 transition ease-in-out'>időpontfoglalás</a>
         </div>
     </nav>
     <section className='w-full flex flex-wrap justify-center gap-4 p-5'>
         {[
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png", text: "Érzékeny, fáj a fogam", link: "#időpontfoglalás" },
-            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png", text: "Szebb mosolyt szeretnék", link: "#konzultáció" },
-            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném" , link: "#időpontfoglalás"},
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontfoglalás" },
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#konzultácio" },
+            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png", text: "Érzékeny, fáj a fogam", link: "#időpontkéres" },
+            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png", text: "Szebb mosolyt szeretnék", link: "#kapcsolatfelvétel" },
+            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném" , link: "#időpontkérés"},
+            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontkérés" },
+            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#kapcsolatfelvétel" },
             { img: "https://keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályózó érdekelne", link: "clearsmile.hu" }
         ].map((card, index) => (
             <div key={index} className="w-64 h-80 odd:bg-red-300 odd:drop-shadow-[10px_10px_0px_rgba(239,68,68,1) bg-red-400 rounded-xl overflow-hidden drop-shadow-[10px_10px_0px_rgba(255, 162, 162, 1)] hover:scale-105 transition ease-in-out">
@@ -68,7 +70,7 @@ function App() {
 
     <About/>
     
-    <section>
+    <section id='szolgaltatas'>
     <div className='w-full flex flex-col p-12 gap-2 text-xl'>
     <div className="flex  items-center gap-4 w-full">
             <div className="flex-1 border-t-2 border-red-500 border-info"></div>
@@ -92,7 +94,7 @@ function App() {
             {kezelesek.map((kezeles, index) => (
               <div key={index} className='flex items-center gap-3 min-h-[40px]'>
               <IconCircleCheckFilled color='red' size={40} />
-              <span>{kezeles.text}</span>
+              <a href={kezeles.link} target='_blank' className='hover:underline ease-in transition'>{kezeles.text}</a>
             </div>
             ))}
           
@@ -108,13 +110,14 @@ function App() {
             <IconForms color='oklch(0.637 0.237 25.331)' size={100}/>
             <div className="flex-1 border-t-2 border-info border-red-500"></div>
         </div>
+        <h1 className='text-3xl flex items-center justify-center w-full font-bold'>KAPCSOLAT</h1>
             <Form/>
             <footer className="w-full bg-gray-200 p-4 text-center text-lg mt-8">
         <div className="flex flex-wrap justify-center gap-6 text-gray-600">
-          <a href="#">Régiadentál</a>
+          <a href="#rolunk">Régiadentál</a>
           <a href="#">Adatkezelés</a>
-          <a href="#">Céginformáció</a>
-          <a href="#">Üzemeltető</a>
+          <a href="https://www.ceginformacio.hu/cr9310023631" target='_blank'>Céginformáció</a>
+          <a href="datacore.hu" target='_blank'>Üzemeltető</a>
         </div>
       </footer>
     </>
