@@ -1,6 +1,6 @@
-'use client'
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 const doctors = [
   { id: 1, name: 'Dr. Teszt Elek', quote: 'Szeretem mikor ügyfeleim kerek mosollyal távoznak!', img: 'image 4547.jpg' },
@@ -10,70 +10,95 @@ const doctors = [
 
 const DoctorsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? doctors.length - 1 : prevIndex - 1));
+    setProgress(0);
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === doctors.length - 1 ? 0 : prevIndex + 1));
+    setProgress(0);
   };
 
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      nextSlide();
+    }, 10000); // Change slide every 10 seconds
+
+    const progressInterval = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
+    }, 100);
+
+    return () => {
+      clearInterval(slideInterval);
+      clearInterval(progressInterval);
+    };
+  }, [currentIndex]);
+
   return (
-    <div className="w-full flex flex-col items-center px-4 sm:px-8" id='orvosaink'>
-      {/* Header Section */}
-      <div className="flex items-center gap-4 w-full">
-        <div className="flex-1 border-t-2 border-red-500"></div>
-        <svg width="50" height="50" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M71.5 29.25L39 16.25L6.5 29.25L39 42.25L71.5 29.25ZM71.5 29.25V48.75" stroke="red" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M19.5 34.4502V52.0002C19.5 54.5861 21.5545 57.066 25.2114 58.8945C28.8684 60.723 33.8283 61.7502 39 61.7502C44.1717 61.7502 49.1316 60.723 52.7886 58.8945C56.4455 57.066 58.5 54.5861 58.5 52.0002V34.4502" stroke="red" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        <div className="flex-1 border-t-2 border-red-500"></div>
-      </div>
-      <h1 className="text-2xl sm:text-3xl uppercase w-full flex justify-center font-bold mt-2">Orvosaink</h1>
+    <div className="w-full flex flex-col items-center px-4 sm:px-8" id="munkatársaink">
+      <h1 className="text-2xl sm:text-3xl uppercase font-bold mt-2">Munkatársaink</h1>
 
       {/* Carousel Section */}
-      <div className="relative w-full max-w-lg sm:max-w-xl h-auto flex items-center justify-center mt-6">
+      <div className="relative w-full h-64 max-w-md sm:max-w-lg flex items-center justify-center mt-6">
         {/* Left Arrow */}
-        <button onClick={prevSlide} className="absolute left-2 sm:left-4 bg-white p-2 rounded-full shadow-md z-10">
-          <IconArrowLeft size={20} className="sm:size-8" />
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 sm:left-4 bg-white p-2 rounded-full shadow-md z-10"
+        >
+          <IconArrowLeft size={24} />
         </button>
 
-        {/* Image Carousel */}
-        <div className="flex w-full justify-center items-center gap-4">
+        {/* Card Carousel */}
+        <div className="relative w-full flex justify-center items-center">
           {doctors.map((doctor, index) => (
-            <img 
-              key={doctor.id} 
-              src={doctor.img} 
-              alt={doctor.name}
-              className={`rounded-full object-cover transition-all duration-300 ${
-                index === currentIndex 
-                  ? 'w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 scale-110 z-10' 
-                  : 'w-24 h-24 sm:w-28 sm:h-28 opacity-50'
+            <div
+              key={doctor.id}
+              className={`absolute w-full flex justify-center items-center transition-all duration-700 ${
+                index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
-            />
+              style={{
+                transform: `translateX(${(index - currentIndex) * 100}%)`,
+                transition: 'transform 0.6s ease-in-out, opacity 0.6s ease-in-out'
+              }}
+            >
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center w-72 sm:w-96">
+                <img
+                  src={doctor.img}
+                  alt={doctor.name}
+                  className="rounded-full w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 shadow-md"
+                />
+                <h2 className="text-lg sm:text-xl font-semibold">{doctor.name}</h2>
+                <p className="italic text-gray-600 text-sm sm:text-base">{doctor.quote}</p>
+              </div>
+            </div>
           ))}
         </div>
 
         {/* Right Arrow */}
-        <button onClick={nextSlide} className="absolute right-2 sm:right-4 bg-white p-2 rounded-full shadow-md z-10">
-          <IconArrowRight size={20} className="sm:size-8" />
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 sm:right-4 bg-white p-2 rounded-full shadow-md z-10"
+        >
+          <IconArrowRight size={24} />
         </button>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="flex mt-4 space-x-2">
-        {doctors.map((_, index) => (
-          <span key={index} className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${index === currentIndex ? 'bg-gray-800' : 'bg-gray-400'}`}></span>
-        ))}
+      {/* Progress Indicator */}
+      <div className="w-full max-w-md sm:max-w-lg h-1 bg-gray-300 mt-4">
+        <div className="h-full bg-red-500 transition-all duration-100" style={{ width: `${progress}%` }}></div>
       </div>
 
-      {/* Doctor Info */}
-      <h2 className="mt-4 text-lg sm:text-xl font-semibold">{doctors[currentIndex].name}</h2>
-      <p className="italic text-gray-600 text-sm sm:text-base text-center max-w-xs sm:max-w-sm">{doctors[currentIndex].quote}</p>
+      {/* View All Employees */}
+      <Link to="/munkatarsaink">
+        <p className="mt-6 text-blue-600 hover:text-blue-800 text-sm sm:text-base font-semibold cursor-pointer">
+          Összes munkatárs megtekintése →
+        </p>
+      </Link>
     </div>
   );
-
 };
 
 export default DoctorsCarousel;

@@ -1,5 +1,5 @@
 import { IconPhoneCall, IconPhone, IconMail, IconGlobe, IconClock, IconBrandFacebook, IconCircleCheckFilled, IconForms } from '@tabler/icons-react'
-import './App.css'
+import '../../App.css'
 import HeroSlider from '../../components/hero'
 import About from '../../components/about'
 import {  IconDental } from '@tabler/icons-react'
@@ -68,13 +68,17 @@ function Home() {
             <div className="flex-1 border-t-2 border-info border-red-500"></div>
         </div>
         <h1 className='text-3xl uppercase w-full flex justify-center font-bold'>szolgáltatás</h1>
-        <span className='w-full flex justify-center text-red-500 font-bold'>ClearSmile a láthatatlan fogszabályzó!</span>
+        <span className='w-full flex justify-center text-red-500 font-bold'>Ismerje meg fogászatunkat!</span>
         <div className='w-full flex justify-center items-center gap-[8rem] md:flex-row flex-col'>
           <div className='flex flex-col md:w-1/3 w-full items-center gap-4 text-justify'>
-                <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vehicula eros sit amet sem porttitor tempus. Curabitur maximus consequat semper. Fusce cursus risus mi, a scelerisque ligula aliquam nec. In finibus hendrerit ex, sed feugiat dui luctus in. Curabitur luctus consectetur dui, a porttitor leo efficitur eu. Curabitur placerat efficitur odio, eu gravida enim pharetra blandit. Cras ultricies justo at nisi auctor consectetur. Mauris eros risus, accumsan id ante eget, suscipit varius nunc. Suspendisse varius quam dapibus commodo imperdiet. Donec id dolor nec leo dignissim condimentum id sit amet eros.
-                </span>
-                <span>Corem ipsum dolor sit amet, consectetur adipiscing elit. Cras vehicula eros sit amet sem porttitor tempus. Curabitur maximus consequat semper. Fusce cursus risus mi, a scelerisque ligula aliquam nec. In finibus hendrerit ex, sed feugiat dui luctus in. Curabitur luctus consectetur dui, a porttitor leo efficitur eu. Curabitur placerat efficitur odio, eu gravida enim pharetra blandit. Cras ultricies justo at nisi auctor consectetur. Mauris eros risus, accumsan id ante eget, suscipit varius nunc. Suspendisse varius quam dapibus commodo imperdiet. Donec id dolor nec leo dignissim condimentum id sit amet eros. </span>
+          <span>A fogorvos nem kell, hogy rémálom legyen! Nálunk profi és barátságos csapat vár, hogy minden kezelés a lehető legkényelmesebb legyen számodra. Egy alapos állapotfelmérés után megbeszéljük, mire van szükséged, és együtt tervezzük meg a kezelést – legyen szó fogtisztításról, fehérítésről vagy akár egy komolyabb beavatkozásról.</span>
+
+          <span>Szeretnéd, ha a tömésed észrevehetetlen lenne? Az esztétikus tömések és kerámia héjak segítenek ebben! Ha gyökérkezelésre van szükséged, fájdalommentesen megoldjuk, hogy ne kelljen aggódnod. A kivehető fogpótlások, hidak és koronák pedig segítenek visszanyerni a kényelmes rágás és a magabiztos mosoly örömét.</span>
+
+<span>A legkisebbekre is gondolunk! Gyermekfogászatunkon a picik barátságos légkörben ismerkedhetnek meg a fogorvosi szék világával.
+
+Bízd ránk a mosolyod, mi pedig gondoskodunk róla, hogy az mindig ragyogó és egészséges maradjon!</span>
+              
           </div>
           <div className='md:w-1/3 flex flex-col items-start gap-4 text-lg'>
             <span className='text-red-400 text-xl font-semibold text-center'>
