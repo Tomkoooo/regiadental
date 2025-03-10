@@ -1,0 +1,73 @@
+/* Alapértelmezett beállítások */
+@import "tailwindcss";
+.et_pb_column {
+    @apply flex flex-col;
+}
+
+.et_pb_column_3_5 {
+    @apply w-3/5;
+}
+
+.et_pb_column_0 {
+    @apply w-full;
+}
+
+.et_pb_module {
+    @apply my-4;
+}
+
+.et_pb_text {
+    @apply text-gray-800;
+}
+
+.et_pb_text_align_left {
+    @apply text-left;
+}
+
+.et_pb_bg_layout_light {
+    @apply bg-white;
+}
+
+.et_pb_text_inner h1 {
+    @apply text-3xl font-bold;
+}
+
+.et_pb_text_inner h2 {
+    @apply text-2xl font-semibold mt-4;
+}
+
+.et_pb_text_inner h4 {
+    @apply text-lg font-medium mt-2;
+}
+
+.et_pb_text_inner p {
+    @apply text-base leading-relaxed mt-2;
+}
+
+.et_pb_text_inner ul {
+    @apply list-disc list-inside mt-2;
+}
+
+.et_pb_text_inner ul li {
+    @apply mb-1;
+}
+
+.wp-image-139, .wp-image-141 {
+    @apply float-right m-2 rounded-lg shadow;
+}
+
+.szurke {
+    @apply bg-gray-200 p-4 rounded-lg mt-4;
+}
+
+.head4 {
+    @apply text-xl font-semibold mt-4;
+}
+
+.list2 {
+    @apply list-disc list-inside;
+}
+
+.list2 li {
+    @apply mb-1;
+}

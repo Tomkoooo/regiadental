@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
+import  { useState, useEffect } from 'react';
+import{ IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 
 const doctors = [

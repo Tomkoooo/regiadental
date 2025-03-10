@@ -1,4 +1,4 @@
-import React from "react";
+
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 
@@ -15,7 +15,7 @@ const EmployeesPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center w-full px-4">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Munkatársaink</h1>
 
-      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-scroll">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gray-200 text-gray-700">

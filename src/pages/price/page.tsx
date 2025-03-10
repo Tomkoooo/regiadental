@@ -1,4 +1,4 @@
-import React from "react";
+
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 
@@ -52,7 +52,7 @@ const PricesPage = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen w-full flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center md:px-4">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">Áraink</h1>
 
       <div className="w-full max-w-4xl">
@@ -74,8 +74,8 @@ const PricesPage = () => {
                         i % 2 === 0 ? "bg-gray-50" : "bg-white"
                       }`}
                     >
-                      <td className="py-3 px-6 text-gray-700">{service.name}</td>
-                      <td className="py-3 px-6 text-right text-gray-900 font-medium">
+                      <td className="py-3 px-6 w-1/4 text-gray-700">{service.name}</td>
+                      <td className="py-3 md:px-6 text-right text-gray-900 font-medium">
                         {service.price}
                       </td>
                     </tr>

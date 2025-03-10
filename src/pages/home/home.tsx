@@ -7,24 +7,27 @@ import DoctorsCarousel from '../../components/doctors'
 import Form from '../../components/form'
 import Navbar from '../../components/navbar'
 import Footer from '../../components/footer'
+import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 function Home() {
 
   const kezelesek = [
-    {text: "Diagnosztika, állapotfelmérés", link: "https://keramiadental.hu/diagnosztika-allapotfelmeres/"},
-    {text: "Professzionális fogtisztitás", link: "https://keramiadental.hu/professzionalis-fogtisztitas/"},
-    {text: "Fogfehérítés", link: "https://keramiadental.hu/fogfeherites/"},
-    {text: "Kerámia és direkt héjak", link: "https://keramiadental.hu/keramia-hejak/"},
-    {text: "Gyökérkezelés", link: "https://keramiadental.hu/gyokerkezeles/"},
-    {text: "Esztétikus tömés", link: "https://keramiadental.hu/esztetikus-tomes/"},
-    {text: "Inlay, onlay betét", link: "https://keramiadental.hu/inlay-onlay-betet/"},
-    {text: "Gyermekfogászat", link: "https://keramiadental.hu/gyermekfogaszat/"},
-    {text: "Koronák, hidak", link: "https://keramiadental.hu/femkeramia-korona/"},
-    {text: "Kivehető fogpótlások", link: "https://keramiadental.hu/hagyomanyos-fogsor/"},
+    {text: "Diagnosztika, állapotfelmérés", link: "/diagnosztika-allapotfelmeres/"},
+    {text: "Professzionális fogtisztitás", link: "/professzionalis-fogtisztitas/"},
+    {text: "Fogfehérítés", link: "/fogfeherites/"},
+    {text: "Kerámia és direkt héjak", link: "/keramia-hejak/"},
+    {text: "Gyökérkezelés", link: "/gyokerkezeles/"},
+    {text: "Esztétikus tömés", link: "/esztetikus-tomes/"},
+    {text: "Inlay, onlay betét", link: "/inlay-onlay-betet/"},
+    {text: "Gyermekfogászat", link: "/gyermekfogaszat/"},
+    {text: "Koronák, hidak", link: "/femkeramia-korona/"},
+    {text: "Kivehető fogpótlások", link: "/hagyomanyos-fogsor/"},
   ]
 
   return (
-    <>
+    <div className='w-full flex flex-col overflow-x-hidden'>
+    <ToastContainer/>
     {/* Fejléc szöveg ikonokkal */}
       <header className='flex justify-between w-full h-16 bg-white items-center text-red-500 md-text-md text-sm '>
         <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhoneCall className='hidden md:flex'/>22/419-405</span>
@@ -40,12 +43,12 @@ function Home() {
       <Navbar/>
     <section className='w-full flex flex-wrap justify-center gap-4 p-5'>
         {[
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png", text: "Érzékeny, fáj a fogam", link: "#időpontkéres" },
-            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png", text: "Szebb mosolyt szeretnék", link: "#kapcsolatfelvétel" },
-            { img: "	https://keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném" , link: "#időpontkérés"},
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontkérés" },
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#kapcsolatfelvétel" },
-            { img: "https://keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályózó érdekelne", link: "clearsmile.hu" }
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png", text: "Érzékeny, fáj a fogam", link: "#időpontkéres" },
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png", text: "Szebb mosolyt szeretnék", link: "#kapcsolatfelvétel" },
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném" , link: "#időpontkérés"},
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontkérés" },
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#kapcsolatfelvétel" },
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályózó érdekelne", link: "clearsmile.hu" }
         ].map((card, index) => (
             <div key={index} className="w-64 h-80 odd:bg-red-300 odd:drop-shadow-[10px_10px_0px_rgba(239,68,68,1) bg-red-400 rounded-xl overflow-hidden drop-shadow-[10px_10px_0px_rgba(255, 162, 162, 1)] hover:scale-105 transition ease-in-out">
                 <figure className="h-40 flex items-center justify-center">
@@ -88,7 +91,7 @@ Bízd ránk a mosolyod, mi pedig gondoskodunk róla, hogy az mindig ragyogó és
             {kezelesek.map((kezeles, index) => (
               <div key={index} className='flex items-center gap-3 min-h-[40px]'>
               <IconCircleCheckFilled color='red' size={40} />
-              <a href={kezeles.link} target='_blank' className='hover:underline ease-in transition'>{kezeles.text}</a>
+              <Link to={kezeles.link} className='hover:underline ease-in transition'>{kezeles.text}</Link>
             </div>
             ))}
           
@@ -107,7 +110,7 @@ Bízd ránk a mosolyod, mi pedig gondoskodunk róla, hogy az mindig ragyogó és
         <h1 className='text-3xl flex items-center justify-center w-full font-bold'>KAPCSOLAT</h1>
             <Form/>
       <Footer/>
-    </>
+    </div>
   )
 }
 

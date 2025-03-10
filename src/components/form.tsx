@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
@@ -57,7 +57,6 @@ const Form = () => {
 
   return (
     <section className='w-full flex md:flex-row flex-col items-center justify-around gap-10' id="időpontkérés">
-      <ToastContainer />
       
       <div className='min-w-92 p-10 flex flex-col rounded-xl border border-slate-100 gap-3' style={{ boxShadow: '10px 10px 0px rgba(239,68,68,1)' }}>
         <span className='text-red-500 text-2xl font-bold'>Időpont foglalás</span>
