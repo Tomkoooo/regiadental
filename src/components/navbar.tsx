@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <nav className={`w-full h-[8rem] flex  bg-red-500 text-black sticky top-0 z-50 shadow-xl ${isOpen? '' : 'rounded-b-lg'}`}>
+    <nav className={`w-full h-[8rem] flex  bg-red-500 text-black sticky top-2 z-50 shadow-xl ${isOpen? '' : 'rounded-b-lg'}`}>
         <div className="flex w-full justify-between">
           <div className='h-full md:w-1/3 w-2/3 rounded-tr-[7rem] rounded-br-[7rem] bg-red-400 flex items-center justify-center'>
               <a href='https://regiadental.hu' className='lg:text-3xl uppercase text-white'>

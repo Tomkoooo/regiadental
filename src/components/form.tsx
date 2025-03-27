@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { employees, kezelesek, contact } from '../assets/utils';
 
 // Define types for treatments, districts, and doctors
 interface Treatment {
@@ -13,32 +14,9 @@ interface Doctor {
   id: string;
 }
 
-// Predefined arrays
-const kezelesek: Treatment[] = [
-  { text: "Diagnosztika, állapotfelmérés", link: "/diagnosztika-allapotfelmeres/" },
-  { text: "Professzionális fogtisztitás", link: "/professzionalis-fogtisztitas/" },
-  { text: "Fogfehérítés", link: "/fogfeherites/" },
-  { text: "Kerámia és direkt héjak", link: "/keramia-hejak/" },
-  { text: "Gyökérkezelés", link: "/gyokerkezeles/" },
-  { text: "Esztétikus tömés", link: "/esztetikus-tomes/" },
-  { text: "Inlay, onlay betét", link: "/inlay-onlay-betet/" },
-  { text: "Gyermekfogászat", link: "/gyermekfogaszat/" },
-  { text: "Koronák, hidak", link: "/femkeramia-korona/" },
-  { text: "Kivehető fogpótlások", link: "/hagyomanyos-fogsor/" },
-];
+const korzetek: string[] = ["Mór 1", "Mór 3", "Mór 4", "Bakonycsernye"];
 
-const korzetek: string[] = [
-  "Körzet 1",
-  "Körzet 2",
-  "Körzet 3",
-  "Körzet 4",
-];
-
-const orvosok: Doctor[] = [
-  { name: "Dr. Kovács Péter", id: "kovacs_peter" },
-  { name: "Dr. Nagy Anna", id: "nagy_anna" },
-  { name: "Dr. Szabó László", id: "szabo_laszlo" },
-];
+const orvosok = employees.filter((empl) => empl.role === 'doctor');
 
 // Form data interfaces
 interface PrivateFormData {
@@ -131,7 +109,7 @@ const Form: React.FC = () => {
           className="min-w-92 p-10 flex flex-col rounded-xl border border-slate-100 gap-3"
           style={{ boxShadow: '10px 10px 0px rgba(239,68,68,1)' }}
         >
-          <span className="text-red-500 text-2xl font-bold">Időpontfoglalás - Magán</span>
+          <span className="text-red-500 text-2xl font-bold">Időpontfoglalás - Magán rendelés</span>
           <form onSubmit={(e) => handleSubmit(e, privateFormData)} className="flex flex-col space-y-4">
             <input
               type="text"
@@ -190,6 +168,7 @@ const Form: React.FC = () => {
             <button type="submit" className="p-2 bg-red-500 text-white rounded">
               Küldés
             </button>
+            <label className="text-sm text-gray-600">Magán telefonszám: {contact.magantel}</label>
           </form>
         </div>
 
@@ -198,7 +177,7 @@ const Form: React.FC = () => {
           className="min-w-92 p-10 flex flex-col rounded-xl border border-slate-100 gap-3"
           style={{ boxShadow: '10px 10px 0px rgba(239,68,68,1)' }}
         >
-          <span className="text-red-500 text-2xl font-bold">Időpontfoglalás - Körzeti</span>
+          <span className="text-red-500 text-2xl font-bold">Időpontfoglalás - Körzeti rendelés</span>
           <form onSubmit={(e) => handleSubmit(e, districtFormData)} className="flex flex-col space-y-4">
             <input
               type="text"
@@ -257,25 +236,52 @@ const Form: React.FC = () => {
             <button type="submit" className="p-2 bg-red-500 text-white rounded">
               Küldés
             </button>
+            <label className="text-sm text-gray-600">Körzeti telefonszám: {contact.korzetitel}</label>
           </form>
         </div>
       </div>
 
       {/* Kapcsolati Elérhetőség és Google Maps */}
-      <div className="w-full flex flex-col items-center gap-5">
-        <div className="text-center">
-          <h3 className="text-red-500 text-xl font-bold">Kapcsolati Elérhetőség</h3>
-          <p>Cím: 1234 Budapest, Példa utca 1.</p>
-          <p>Telefon: +36 1 234 5678</p>
-          <p>Email: info@regiadental.hu</p>
+      <div className="w-full flex flex-col items-center gap-6 px-4">
+        <div className="text-center bg-gray-50 p-6 rounded-lg shadow-md max-w-lg w-full">
+          <h3 className="text-red-500 text-2xl font-bold mb-4">Kapcsolati Elérhetőség</h3>
+          <div className="flex flex-col gap-3 text-gray-800">
+            <p>
+              <span className="font-semibold">Cím: </span>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.telephely)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                {contact.telephely}
+              </a>
+            </p>
+            <p>
+              <span className="font-semibold">Telefon (magán rendelés): </span>
+              <span>{contact.magantel}</span>
+            </p>
+            <p>
+              <span className="font-semibold">Telefon (körzeti rendelés): </span>
+              <span>{contact.korzetitel}</span>
+            </p>
+            <p>
+              <span className="font-semibold">Email: </span>
+              <a href={`mailto:${contact.email}`} className="text-blue-600 hover:underline">
+                {contact.email}
+              </a>
+            </p>
+          </div>
         </div>
         <div className="w-full max-w-2xl">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.337647874944!2d19.040235315641!3d47.497912979177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDI5JzUyLjUiTiAxOcKwMDInMjQuOSJF!5e0!3m2!1shu!2shu!4v1634567890123!5m2!1shu!2shu"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2702.196698458447!2d18.212226775645657!3d47.36907930435036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476a247b6bf2b6f1%3A0x4b263640fcb2e9e6!2sRegia%20Dental%20Fog%C3%A1szati%20K%C3%B6zpont!5e0!3m2!1shu!2shu!4v1742915241410!5m2!1shu!2shu"
             width="100%"
-            height="300"
+            height="450"
             style={{ border: 0 }}
+            allowFullScreen
             loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>

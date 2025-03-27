@@ -1,12 +1,7 @@
 
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
-
-const employees = [
-  { id: 1, name: "Dr. Teszt Elek", position: "Fogorvos", email: "teszt.elek@example.com", img: "image 4547" },
-  { id: 2, name: "Dr. Kovács Anna", position: "Szájsebész", email: "kovacs.anna@example.com", img: "image 4548" },
-  { id: 3, name: "Dr. Nagy Péter", position: "Ortodontus", email: "nagy.peter@example.com", img: "" }, // No image
-];
+import { employees } from "../../assets/utils";
 
 const EmployeesPage = () => {
   return (

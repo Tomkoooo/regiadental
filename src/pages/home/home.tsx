@@ -9,33 +9,48 @@ import Navbar from '../../components/navbar'
 import Footer from '../../components/footer'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { kezelesek, contact } from '../../assets/utils'
 
 function Home() {
-
-  const kezelesek = [
-    {text: "Diagnosztika, állapotfelmérés", link: "/diagnosztika-allapotfelmeres/"},
-    {text: "Professzionális fogtisztitás", link: "/professzionalis-fogtisztitas/"},
-    {text: "Fogfehérítés", link: "/fogfeherites/"},
-    {text: "Kerámia és direkt héjak", link: "/keramia-hejak/"},
-    {text: "Gyökérkezelés", link: "/gyokerkezeles/"},
-    {text: "Esztétikus tömés", link: "/esztetikus-tomes/"},
-    {text: "Inlay, onlay betét", link: "/inlay-onlay-betet/"},
-    {text: "Gyermekfogászat", link: "/gyermekfogaszat/"},
-    {text: "Koronák, hidak", link: "/femkeramia-korona/"},
-    {text: "Kivehető fogpótlások", link: "/hagyomanyos-fogsor/"},
-  ]
-
   return (
     <div className='w-full flex flex-col overflow-x-hidden'>
     <ToastContainer/>
     {/* Fejléc szöveg ikonokkal */}
-      <header className='flex justify-between w-full h-16 bg-white items-center text-red-500 md-text-md text-sm '>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhoneCall className='hidden md:flex'/>22/419-405</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconPhone className='hidden md:flex'/>20/244-8888</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconGlobe className='hidden md:flex'/>Mór</span>
-        <span className='flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl'><IconClock className='hidden md:flex'/>Hétfő - Péntek 8.00 - 18.00</span>
-        <span className='gap-3 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl hidden md:flex'><IconMail /><IconBrandFacebook/></span>
-      </header>
+    <header className="flex justify-between w-full h-16 bg-white items-center text-red-500 md:text-md text-sm">
+      {/* Körzeti Phone */}
+      <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
+        <IconPhoneCall className="hidden md:flex" />
+        <span>
+          <span className="font-semibold">Körzeti: </span>
+          {contact.korzetitel}
+        </span>
+      </span>
+
+      {/* Magán Phone */}
+      <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
+        <IconPhone className="hidden md:flex" />
+        <span>
+          <span className="font-semibold">Magán: </span>
+          {contact.magantel}
+        </span>
+      </span>
+
+      {/* Location */}
+      <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
+        <IconGlobe className="hidden md:flex" />
+        {contact.telephely.split(',')[0]} {/* Display only the city part for brevity */}
+      </span>
+
+      {/* Email and Social */}
+      <span className="flex gap-3 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl  md:flex">
+        <a href={`mailto:${contact.email}`} className="flex items-center gap-2">
+          <IconMail />
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center">
+          <IconBrandFacebook />
+        </a>
+      </span>
+    </header>
 
       <HeroSlider/>
 
@@ -72,32 +87,40 @@ function Home() {
         </div>
         <h1 className='text-3xl uppercase w-full flex justify-center font-bold'>szolgáltatás</h1>
         <span className='w-full flex justify-center text-red-500 font-bold'>Ismerje meg fogászatunkat!</span>
-        <div className='w-full flex justify-center items-center gap-[8rem] md:flex-row flex-col'>
-          <div className='flex flex-col md:w-1/3 w-full items-center gap-4 text-justify'>
-          <span>A fogorvos nem kell, hogy rémálom legyen! Nálunk profi és barátságos csapat vár, hogy minden kezelés a lehető legkényelmesebb legyen számodra. Egy alapos állapotfelmérés után megbeszéljük, mire van szükséged, és együtt tervezzük meg a kezelést – legyen szó fogtisztításról, fehérítésről vagy akár egy komolyabb beavatkozásról.</span>
+        <div className="w-full flex justify-center items-start gap-8 md:flex-row flex-col px-4">
+      {/* Text Column */}
+      <div className="flex flex-col md:w-1/2 w-full items-start gap-4 text-justify">
+        <span>
+          A fogorvos nem kell, hogy rémálom legyen! Nálunk profi és barátságos csapat vár, hogy minden kezelés a lehető
+          legkényelmesebb legyen számodra. Egy alapos állapotfelmérés után megbeszéljük, mire van szükséged, és együtt
+          tervezzük meg a kezelést – legyen szó fogtisztításról, fehérítésről vagy akár egy komolyabb beavatkozásról.
+        </span>
+        <span>
+          Szeretnéd, ha a tömésed észrevehetetlen lenne? Az esztétikus tömések és kerámia héjak segítenek ebben! Ha
+          gyökérkezelésre van szükséged, fájdalommentesen megoldjuk, hogy ne kelljen aggódnod. A kivehető fogpótlások,
+          hidak és koronák pedig segítenek visszanyerni a kényelmes rágás és a magabiztos mosoly örömét.
+        </span>
+        <span>
+          A legkisebbekre is gondolunk! Gyermekfogászatunkon a picik barátságos légkörben ismerkedhetnek meg a fogorvosi
+          szék világával. Bízd ránk a mosolyod, mi pedig gondoskodunk róla, hogy az mindig ragyogó és egészséges maradjon!
+        </span>
+      </div>
 
-          <span>Szeretnéd, ha a tömésed észrevehetetlen lenne? Az esztétikus tömések és kerámia héjak segítenek ebben! Ha gyökérkezelésre van szükséged, fájdalommentesen megoldjuk, hogy ne kelljen aggódnod. A kivehető fogpótlások, hidak és koronák pedig segítenek visszanyerni a kényelmes rágás és a magabiztos mosoly örömét.</span>
-
-<span>A legkisebbekre is gondolunk! Gyermekfogászatunkon a picik barátságos légkörben ismerkedhetnek meg a fogorvosi szék világával.
-
-Bízd ránk a mosolyod, mi pedig gondoskodunk róla, hogy az mindig ragyogó és egészséges maradjon!</span>
-              
-          </div>
-          <div className='md:w-1/3 flex flex-col items-start gap-4 text-lg'>
-            <span className='text-red-400 text-xl font-semibold text-center'>
-              Kezeléseink
-            </span>
-            
-            {kezelesek.map((kezeles, index) => (
-              <div key={index} className='flex items-center gap-3 min-h-[40px]'>
-              <IconCircleCheckFilled color='red' size={40} />
-              <Link to={kezeles.link} className='hover:underline ease-in transition'>{kezeles.text}</Link>
+      {/* Treatments Column */}
+      <div className="md:w-1/2 w-full flex flex-col items-start gap-4">
+        <span className="text-red-400 text-xl font-semibold text-center w-full">Kezeléseink</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {kezelesek.map((kezeles, index) => (
+            <div key={index} className="flex items-center gap-3 min-h-[40px]">
+              <IconCircleCheckFilled color="red" size={40} />
+              <Link to={kezeles.link} className="hover:underline ease-in transition">
+                {kezeles.text}
+              </Link>
             </div>
-            ))}
-          
-          </div>
-
+          ))}
         </div>
+      </div>
+    </div>
     </div>
     </section>
 

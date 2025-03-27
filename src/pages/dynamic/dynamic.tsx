@@ -52,7 +52,7 @@ const Dynamic = () => {
     return (
       <div>
         <Navbar />
-        <div>Loading...</div>
+        <div className='min-h-screen flex items-center justify-cetner w-full'><div className="loading spinner-loading spinner "></div></div>
         <Footer />
       </div>
     )
