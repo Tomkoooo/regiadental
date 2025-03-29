@@ -3,6 +3,14 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
+// Include PHPMailer files
+require 'php/PHPMailer.php';
+require 'php/SMTP.php';
+require 'php/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 // Read JSON input
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -13,7 +21,7 @@ if (!isset($data['name'], $data['email'], $data['date'], $data['treatment'])) {
 }
 
 // Clinic Email
-$clinicEmail = "yourclinic@example.com"; //ITT IDE JÖN AZ EMAIL CÍME A FOGÁSZATNAK
+$clinicEmail = "info@regiadental.hu";
 $subjectClinic = "Új időpontfoglalás érkezett!";
 $messageClinic = "
     <h3>Új foglalás érkezett:</h3>
@@ -21,34 +29,32 @@ $messageClinic = "
     <p><b>Email:</b> {$data['email']}</p>
     <p><b>Dátum:</b> {$data['date']}</p>
     <p><b>Kezelés:</b> {$data['treatment']}</p>
-    <p><b>Típus:</b> {$data['type']}</p>
-    " . ($data['type'] === 'körzeti' ? "<p><b>Körzet:</b> {$data['district']}</p>" : "") . "
-    <p><b>Üzenet:</b> {$data['message']}</p>";
-
-// Client Email
-$subjectClient = "Időpontfoglalás megerősítése";
-$messageClient = "
-    <h3>Kedves {$data['name']},</h3>
-    <p>Az alábbi időpontot foglalta le nálunk:</p>
-    <p><b>Dátum:</b> {$data['date']}</p>
-    <p><b>Kezelés:</b> {$data['treatment']}</p>
-    <p><b>Rendelő típusa:</b> {$data['type']}</p>
-    <p>Köszönjük, hogy minket választott!</p>
 ";
 
-// Mail headers
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
-$headers .= "From: Kerámia Dental <no-reply@keramiadental.hu>" . "\r\n";
+try {
+    $mail = new PHPMailer(true);
 
-// Send emails
-$mailToClinic = mail($clinicEmail, $subjectClinic, $messageClinic, $headers);
-$mailToClient = mail($data['email'], $subjectClient, $messageClient, $headers);
+    // SMTP Configuration
+    $mail->isSMTP();
+    $mail->Host = 'webmail.forpsi.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'postmaster@regiadental.hu';
+    $mail->Password = '4eke7-fus4';
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
 
-// Response
-if ($mailToClinic && $mailToClient) {
-    echo json_encode(["success" => true, "message" => "Emails sent successfully"]);
-} else {
-    echo json_encode(["success" => false, "message" => "Failed to send emails"]);
+    // Email Settings
+    $mail->setFrom('postmaster@regiadental.hu', 'Regia Dental');
+    $mail->addAddress($clinicEmail); // Clinic email
+    $mail->addReplyTo($data['email'], $data['name']); // Reply to user
+
+    $mail->isHTML(true);
+    $mail->Subject = $subjectClinic;
+    $mail->Body = $messageClinic;
+
+    // Send Email
+    $mail->send();
+    echo json_encode(["success" => true, "message" => "Email sent successfully"]);
+} catch (Exception $e) {
+    echo json_encode(["success" => false, "message" => "Email could not be sent. Error: {$mail->ErrorInfo}"]);
 }
-?>
