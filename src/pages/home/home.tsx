@@ -1,4 +1,4 @@
-import { IconPhoneCall, IconPhone, IconMail, IconGlobe, IconClock, IconBrandFacebook, IconCircleCheckFilled, IconForms } from '@tabler/icons-react'
+import { IconPhoneCall, IconPhone, IconMail, IconGlobe, IconBrandFacebook, IconCircleCheckFilled, IconForms, IconBrandInstagram } from '@tabler/icons-react'
 import '../../App.css'
 import HeroSlider from '../../components/hero'
 import About from '../../components/about'
@@ -13,10 +13,10 @@ import { kezelesek, contact } from '../../assets/utils'
 
 function Home() {
   return (
-    <div className='w-full flex flex-col overflow-x-hidden'>
+    <div className='w-full flex flex-col'>
     <ToastContainer/>
     {/* Fejléc szöveg ikonokkal */}
-    <header className="flex justify-between w-full h-16 bg-white items-center text-red-500 md:text-md text-sm">
+    <header className="flex  justify-between w-full h-16 bg-white items-center text-red-500 md:text-md text-sm">
       {/* Körzeti Phone */}
       <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
         <IconPhoneCall className="hidden md:flex" />
@@ -38,7 +38,7 @@ function Home() {
       {/* Location */}
       <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
         <IconGlobe className="hidden md:flex" />
-        {contact.telephely.split(',')[0]} {/* Display only the city part for brevity */}
+        {contact.telephely} {/* Display only the city part for brevity */}
       </span>
 
       {/* Email and Social */}
@@ -48,6 +48,9 @@ function Home() {
         </a>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center">
           <IconBrandFacebook />
+        </a>
+        <a href="https://instagram.com" target='_blank' rel='noopener norefferer' className='flex items-center'>
+          <IconBrandInstagram/>
         </a>
       </span>
     </header>
@@ -63,7 +66,7 @@ function Home() {
             { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném" , link: "#időpontkérés"},
             { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontkérés" },
             { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#kapcsolatfelvétel" },
-            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályózó érdekelne", link: "clearsmile.hu" }
+            { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályzó ClearSmile", link: "clearsmile.hu" }
         ].map((card, index) => (
             <div key={index} className="w-64 h-80 odd:bg-red-300 odd:drop-shadow-[10px_10px_0px_rgba(239,68,68,1) bg-red-400 rounded-xl overflow-hidden drop-shadow-[10px_10px_0px_rgba(255, 162, 162, 1)] hover:scale-105 transition ease-in-out">
                 <figure className="h-40 flex items-center justify-center">

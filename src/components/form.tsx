@@ -4,16 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { employees, kezelesek, contact } from '../assets/utils';
 
 // Define types for treatments, districts, and doctors
-interface Treatment {
-  text: string;
-  link: string;
-}
-
-interface Doctor {
-  name: string;
-  id: string;
-}
-
 const korzetek: string[] = ["Mór 1", "Mór 3", "Mór 4", "Bakonycsernye"];
 
 const orvosok = employees.filter((empl) => empl.role === 'doctor');
@@ -168,7 +158,7 @@ const Form: React.FC = () => {
             <button type="submit" className="p-2 bg-red-500 text-white rounded">
               Küldés
             </button>
-            <label className="text-sm text-gray-600">Magán telefonszám: {contact.magantel}</label>
+            <label className="text-sm text-gray-600">Magán telefonszám: <a href={`tel:${contact.magantel}`} className='text-blue-600 hover:underline'>{contact.magantel}</a></label>
           </form>
         </div>
 
@@ -236,7 +226,7 @@ const Form: React.FC = () => {
             <button type="submit" className="p-2 bg-red-500 text-white rounded">
               Küldés
             </button>
-            <label className="text-sm text-gray-600">Körzeti telefonszám: {contact.korzetitel}</label>
+            <label className="text-sm text-gray-600">Körzeti telefonszám: <a href={`tel:${contact.korzetitel}`} className='text-blue-600 hover:underline'>{contact.korzetitel}</a></label>
           </form>
         </div>
       </div>
@@ -258,12 +248,12 @@ const Form: React.FC = () => {
               </a>
             </p>
             <p>
-              <span className="font-semibold">Telefon (magán rendelés): </span>
-              <span>{contact.magantel}</span>
+              <span className="font-semibold ">Telefon (magán rendelés): </span>
+              <a href={`tel:${contact.magantel}`} className='text-blue-600 hover:underline'>{contact.magantel}</a>
             </p>
             <p>
               <span className="font-semibold">Telefon (körzeti rendelés): </span>
-              <span>{contact.korzetitel}</span>
+              <a href={`tel:${contact.korzetitel}`} className='text-blue-600 hover:underline'>{contact.korzetitel}</a>
             </p>
             <p>
               <span className="font-semibold">Email: </span>

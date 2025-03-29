@@ -64,7 +64,7 @@ const PricesPage = () => {
             </h2>
 
             {/* Services Table */}
-            <div className="bg-white shadow-md rounded-lg overflow-hidden mt-2">
+            <div className="bg-white shadow-md rounded-lg  mt-2">
               <table className="w-full border-collapse">
                 <tbody>
                   {category.services.map((service, i) => (

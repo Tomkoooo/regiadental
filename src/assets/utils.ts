@@ -46,8 +46,8 @@ export const employees: Doctor[] = [
 
 
 export const contact = {
-    telephely: "",
-    email: "",
+    telephely: "Mór, Kórház u. 21, 8060",
+    email: "regiadentalkft@gmail.com",
     korzetitel: "+36209245155",
     magantel: "+36202472471"
 }
