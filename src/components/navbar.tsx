@@ -9,7 +9,8 @@ const Navbar = () => {
     <nav className={`w-full h-[8rem] flex  bg-red-500 text-black sticky top-2 z-50 shadow-xl ${isOpen? '' : 'rounded-b-lg'}`}>
         <div className="flex w-full justify-between">
           <div className='h-full md:w-1/3 w-2/3 rounded-tr-[7rem] rounded-br-[7rem] bg-red-400 flex items-center justify-center'>
-              <a href='https://regiadental.hu' className='lg:text-3xl uppercase text-white'>
+              <a href='https://regiadental.hu' className='lg:text-3xl uppercase text-white flex items-center gap-2'>
+                <img src="https://keramiadental.hu/wp-content/uploads/2023/03/cropped-336182853_8079947512022432_8646825359518799404_n-192x192.png" alt='icon' className='w-16 '></img>
                   Regia Dentál
               </a>
           </div>

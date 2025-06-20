@@ -39,9 +39,9 @@ export const kezelesek: Treatment[] = [
 
 
 export const employees: Doctor[] = [
-    { id: 1, name: "Dr. Teszt Elek", position: "Fogorvos", role: "doctor", email: "teszt.elek@example.com", img: "image 4547" },
-    { id: 2, name: "Dr. Kovács Anna", position: "Szájsebész", role: "doctor", email: "kovacs.anna@example.com", img: "image 4548" },
-    { id: 3, name: "Dr. Nagy Péter", position: "Ortodontus", role: "doctor", email: "nagy.peter@example.com", img: "" }, // No image
+    { id: 1, name: "Dr. Holl Viktória", position: "Fogorvos", role: "doctor", email: "regiadentalkft@gmail.com", img: "image.png" },
+    { id: 2, name: "Dr. Forbi Seyed Parsa", position: "Fogorvos", role: "doctor", email: "regiadentalkft@gmail.com", img: "image.png" },
+    { id: 3, name: "Dr. Karsai Szabolcs", position: "Fogorvos", role: "doctor", email: "regiadentalkft@gmail.com", img: "image.png" }, // No image
   ];
 
 

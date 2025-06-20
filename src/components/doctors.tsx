@@ -1,16 +1,12 @@
 import  { useState, useEffect } from 'react';
 import{ IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-
-const doctors = [
-  { id: 1, name: 'Dr. Teszt Elek', quote: 'Szeretem mikor ügyfeleim kerek mosollyal távoznak!', img: 'image 4547.jpg' },
-  { id: 2, name: 'Dr. Kovács Anna', quote: 'A legjobb kezelés az, amelyik a páciensnek a legkényelmesebb.', img: 'image 4548.jpg' },
-  { id: 3, name: 'Dr. Nagy Péter', quote: 'A mosoly egy életre szóló befektetés.', img: 'image 4549.jpg' }
-];
+import { employees } from '../assets/utils';
 
 const DoctorsCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const doctors = employees.filter((employee) => employee.role === 'doctor');
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? doctors.length - 1 : prevIndex - 1));
@@ -66,12 +62,11 @@ const DoctorsCarousel = () => {
             >
               <div className="bg-white p-6 rounded-lg shadow-lg text-center w-72 sm:w-96">
                 <img
-                  src={doctor.img}
+                  src={doctor.img !== "" ? doctor.img : 'https://via.placeholder.com/150'}
                   alt={doctor.name}
                   className="rounded-full w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 shadow-md"
                 />
                 <h2 className="text-lg sm:text-xl font-semibold">{doctor.name}</h2>
-                <p className="italic text-gray-600 text-sm sm:text-base">{doctor.quote}</p>
               </div>
             </div>
           ))}

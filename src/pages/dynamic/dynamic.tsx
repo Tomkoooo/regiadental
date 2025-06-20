@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import Form from '../../components/form'
 import Navbar from '../../components/navbar'
 import Footer from '../../components/footer'
 import '../../components/bootstrap.css'
+import useRendelesType from '../../hooks/useRendelesType'
+import { IconForms } from '@tabler/icons-react'
 
 const Dynamic = () => {
   const { string } = useParams<{ string: string }>()
   const [treatmentData, setTreatmentData] = useState<{ slug: string; content: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { Modal, Content } = useRendelesType()
 
   useEffect(() => {
     const fetchTreatmentData = async () => {
@@ -52,7 +54,9 @@ const Dynamic = () => {
     return (
       <div>
         <Navbar />
-        <div className='min-h-screen flex items-center justify-cetner w-full'><div className="loading spinner-loading spinner "></div></div>
+        <div className='min-h-screen flex items-center justify-center w-full'>
+          <div className="loading spinner-loading spinner"></div>
+        </div>
         <Footer />
       </div>
     )
@@ -62,17 +66,28 @@ const Dynamic = () => {
     return (
       <div>
         <Navbar />
-        <div >{error || 'Treatment not found'}</div>
+        <div className='min-h-screen flex items-center justify-center w-full'>
+          {error || 'Treatment not found'}
+        </div>
         <Footer />
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="w-full flex flex-col">
       <Navbar />
-      <div className='w-full min-h-screen flex px-4' dangerouslySetInnerHTML={{ __html: treatmentData.content }} />
-      <Form />
+      <Modal />
+      <div className="w-full min-h-screen flex flex-col px-4">
+        <div dangerouslySetInnerHTML={{ __html: treatmentData.content }} />
+        <div className="flex items-center gap-4 w-full mt-8">
+          <div className="flex-1 border-t-2 border-red-500 border-info"></div>
+          <IconForms color="oklch(0.637 0.237 25.331)" size={100} />
+          <div className="flex-1 border-t-2 border-info border-red-500"></div>
+        </div>
+        <h1 className="text-3xl flex items-center justify-center w-full font-bold">KAPCSOLAT</h1>
+        <Content />
+      </div>
       <Footer />
     </div>
   )

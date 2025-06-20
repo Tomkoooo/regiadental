@@ -47,7 +47,9 @@ const About = () => {
                 <span className='indent-6'>   A Régia Dental Fogászati Központunkban ötvözzük a családias légkört, a bizalmon alapuló kapcsolat kialakítását, a legmodernebb eljárások alkalmazását kiemelt szaktudásunkkal. Berendezéseink és alapanyagaink a legújabb technológiai eljárásokon alapulnak. Munkánkat nyugati színvonalon, a legjobb minőségű fogászati anyagok felhasználásával végezzük. Rendelőnkben dolgozó orvosaink magasan képzettek, emellett több idegen nyelvet is beszélnek. </span>
                 <a href='#kapcsolatfelvétel' className='text-red-500 hover:underline transition ease-in-out cursor-pointer flex'><IconCaretRight/> Lépjen kapcsolatba velünk!</a>
                 <a href='#kapcsolatfelvétel' className='text-red-500 hover:underline transition ease-in-out cursor-pointer flex'><IconCaretRight/> Időpont foglalás</a>
-                <span className='indent-6'>   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris gravida sollicitudin neque, quis rhoncus mi. Vivamus ut pretium risus, non dignissim neque. Duis justo nisl, viverra et magna quis, sollicitudin malesuada urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; </span>
+                <span className='indent-6'>  🦷 Miért válasszon minket, ha fogászatról van szó?
+
+A Régia Dentalnál nemcsak a fogaival foglalkozunk, hanem Önnel is. Pácienseink kényelme, biztonsága és elégedettsége számunkra elsődleges. Legyen szó fájdalommentes fogtömésről, esztétikus fogpótlásról vagy professzionális fogfehérítésről – nálunk mindig a legmagasabb szakmai színvonalat kapja. Modern technológiával, empatikus hozzáállással és rugalmas időpontfoglalással várjuk Önt is, hogy újra magabiztosan mosolyoghasson. </span>
             </div>
         </div>
     </div>
