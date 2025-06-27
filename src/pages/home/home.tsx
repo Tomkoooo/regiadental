@@ -1,24 +1,43 @@
-import { IconPhoneCall, IconPhone, IconMail, IconGlobe, IconBrandFacebook, IconCircleCheckFilled, IconForms, IconBrandInstagram } from '@tabler/icons-react'
-import '../../App.css'
-import HeroSlider from '../../components/hero'
-import About from '../../components/about'
-import { IconDental } from '@tabler/icons-react'
-import DoctorsCarousel from '../../components/doctors'
-import Navbar from '../../components/navbar'
-import Footer from '../../components/footer'
-import { Link } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import { kezelesek, contact } from '../../assets/utils'
-import useRendelesType from '../../hooks/useRendelesType'
+// Home.tsx
+import {
+  IconPhoneCall,
+  IconPhone,
+  IconMail,
+  IconGlobe,
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconDental,
+  IconCircleCheckFilled,
+  IconForms,
+} from '@tabler/icons-react';
+import '../../App.css';
+import HeroSlider from '../../components/hero';
+import About from '../../components/about';
+import DoctorsCarousel from '../../components/doctors';
+import Navbar from '../../components/navbar';
+import Footer from '../../components/footer';
+import { Link } from 'react-router-dom';
+import { kezelesek, contact } from '../../assets/utils';
+import useRendelesType from '../../hooks/useRendelesType';
+import { ToastContainer } from 'react-toastify';
 
 function Home() {
-  const { Modal, Content } = useRendelesType();
+  const { Modal, Content, selectedType } = useRendelesType();
+
+  if (selectedType === 'körzeti') {
+    return (
+      <div className="w-full flex flex-col">
+        <Modal />
+        <Content />
+      </div>
+    );
+  }
+
   return (
-    <div className='w-full flex flex-col'>
+    <div className="w-full flex flex-col">
       <ToastContainer/>
-      {/* Fejléc szöveg ikonokkal */}
+      {/* Header with contact info */}
       <header className="flex justify-between w-full h-16 bg-white items-center text-red-500 md:text-md text-sm">
-        {/* Körzeti Phone */}
         <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
           <IconPhoneCall className="hidden md:flex" />
           <span>
@@ -26,8 +45,6 @@ function Home() {
             {contact.korzetitel}
           </span>
         </span>
-
-        {/* Magán Phone */}
         <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
           <IconPhone className="hidden md:flex" />
           <span>
@@ -35,52 +52,86 @@ function Home() {
             {contact.magantel}
           </span>
         </span>
-
-        {/* Location */}
         <span className="flex gap-2 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl">
           <IconGlobe className="hidden md:flex" />
           {contact.telephely}
         </span>
-
-        {/* Email and Social */}
         <span className="flex gap-3 p-2 cursor-pointer ease-in-out transition hover:bg-red-500 hover:text-white rounded-2xl md:flex">
           <a href={`mailto:${contact.email}`} className="flex items-center gap-2">
             <IconMail />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
             <IconBrandFacebook />
           </a>
-          <a href="https://instagram.com" target='_blank' rel='noopener noreferrer' className='flex items-center'>
-            <IconBrandInstagram/>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <IconBrandInstagram />
           </a>
         </span>
       </header>
 
-      <HeroSlider/>
+      <HeroSlider />
       <Modal />
-      <Navbar/>
-      <section className='w-full flex flex-wrap justify-center gap-4 p-5'>
+      <Navbar />
+      <section className="w-full flex flex-wrap justify-center gap-4 p-5">
         {[
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png", text: "Érzékeny, fáj a fogam", link: "#időpontkérés" },
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png", text: "Szebb mosolyt szeretnék", link: "#kapcsolatfelvétel" },
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png", text: "Szuvas a fogam, töméseim cseréltetném", link: "#időpontkérés"},
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png", text: "Hiányzó fogaimat pótolnám", link: "#időpontkérés" },
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/implantalas.png", text: "Implamentálás, fogbeültetés érdekelne", link: "#kapcsolatfelvétel" },
-          { img: "https://www.keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png", text: "Láthatatlan fogszabályzó ClearSmile", link: "https://clearsmile.hu" }
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/erzekeny-fog.png',
+            text: 'Érzékeny, fáj a fogam',
+            link: '#időpontkérés',
+          },
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/szebb-osoly.png',
+            text: 'Szebb mosolyt szeretnék',
+            link: '#kapcsolatfelvétel',
+          },
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/szuvas-fog.png',
+            text: 'Szuvas a fogam, töméseim cseréltetném',
+            link: '#időpontkérés',
+          },
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/hianyzo-fog.png',
+            text: 'Hiányzó fogaimat pótolnám',
+            link: '#időpontkérés',
+          },
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/implantalas.png',
+            text: 'Implamentálás, fogbeültetés érdekelne',
+            link: '#kapcsolatfelvétel',
+          },
+          {
+            img: 'https://www.keramiadental.hu/wp-content/uploads/2023/02/lathatatlan-fogszabalyozas.png',
+            text: 'Láthatatlan fogszabályzó ClearSmile',
+            link: 'https://clearsmile.hu',
+          },
         ].map((card, index) => (
-          <div key={index} className="w-64 h-80 odd:bg-red-300 odd:drop-shadow-[10px_10px_0px_rgba(239,68,68,1)] bg-red-400 rounded-xl overflow-hidden drop-shadow-[10px_10px_0px_rgba(255,162,162,1)] hover:scale-105 transition ease-in-out">
+          <div
+            key={index}
+            className="w-64 h-80 odd:bg-red-300 odd:drop-shadow-[10px_10px_0px_rgba(239,68,68,1)] bg-red-400 rounded-xl overflow-hidden drop-shadow-[10px_10px_0px_rgba(255,162,162,1)] hover:scale-105 transition ease-in-out"
+          >
             <figure className="h-40 flex items-center justify-center">
               <img src={card.img} alt={card.text} className="w-1/3" />
             </figure>
             <div className="h-40 flex items-center justify-center p-4 text-center text-white text-2xl font-semibold">
-              <a href={card.link} className='hover:underline'>{card.text}</a>
+              <a href={card.link} className="hover:underline">
+                {card.text}
+              </a>
             </div>
           </div>
         ))}
       </section>
 
-      <About/>
-      
+      <About />
       <section id='szolgaltatas'>
         <div className='w-full flex flex-col p-12 gap-2 text-xl'>
           <div className="flex items-center gap-4 w-full">
@@ -124,15 +175,17 @@ function Home() {
         </div>
       </section>
 
-      <DoctorsCarousel/>
+      <DoctorsCarousel />
       <div className="flex items-center gap-4 w-full mt-8">
         <div className="flex-1 border-t-2 border-red-500 border-info"></div>
-        <IconForms color='oklch(0.637 0.237 25.331)' size={100}/>
+        <IconForms color="oklch(0.637 0.237 25.331)" size={100} />
         <div className="flex-1 border-t-2 border-info border-red-500"></div>
       </div>
-      <h1 className='text-3xl flex items-center justify-center w-full font-bold'>KAPCSOLAT</h1>
+      <h1 className="text-3xl flex items-center justify-center w-full font-bold">
+        KAPCSOLAT
+      </h1>
       <Content />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
